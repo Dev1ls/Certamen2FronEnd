@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Evaluacion</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <h1>Evaluacion de Desempeno Laboral</h1>
+
+        <form id="formularioEvaluacion">
+
+            <div class="grupo">
+                <label for="nombre">Nombre del colaborador</label>
+                <input type="text" id="nombre" placeholder="Ingrese nombre">
+            </div>
+
+            <div class="grupo">
+                <label for="cargo">Cargo del colaborador</label>
+                <input type="text" id="cargo" placeholder="Ingrese cargo">
+            </div>
+
+            <h2>Criterios de evaluacion</h2>
+
+            <div class="fila titulos">
+                <span>Criterio</span>
+                <span>Puntaje</span>
+                <span>Peso %</span>
+            </div>
+
+            <div class="fila">
+                <input type="text" id="criterio1" value="Puntualidad">
+                <input type="number" id="puntaje1" value="9">
+                <input type="number" id="peso1" value="15">
+            </div>
+
+            <div class="fila">
+                <input type="text" id="criterio2" value="Trabajo en equipo">
+                <input type="number" id="puntaje2" value="8">
+                <input type="number" id="peso2" value="20">
+            </div>
+
+            <div class="fila">
+                <input type="text" id="criterio3" value="Calidad del trabajo">
+                <input type="number" id="puntaje3" value="7">
+                <input type="number" id="peso3" value="30">
+            </div>
+
+            <div class="fila">
+                <input type="text" id="criterio4" value="Productividad">
+                <input type="number" id="puntaje4" value="8">
+                <input type="number" id="peso4" value="25">
+            </div>
+
+            <div class="fila">
+                <input type="text" id="criterio5" value="Iniciativa">
+                <input type="number" id="puntaje5" value="9">
+                <input type="number" id="peso5" value="10">
+            </div>
+
+            <button type="submit">Calcular evaluacion</button>
+
+            <div id="errores"></div>
+
+            <div id="resultado" class="oculto">
+                <h3>Resultado final</h3>
+                <p id="textoResultado"></p>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
