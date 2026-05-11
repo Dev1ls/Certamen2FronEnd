@@ -1,3 +1,32 @@
+function obtenerCategoria(notaFinal) {
+
+    if (notaFinal >= 9) {
+        return {
+            categoria: "Excelente",
+            clase: "excelente"
+        };
+    }
+    else if (notaFinal >= 7) {
+        return {
+            categoria: "Bueno",
+            clase: "bueno"
+        };
+    }
+    else if (notaFinal >= 5) {
+        return {
+            categoria: "Regular",
+            clase: "regular"
+        };
+    }
+    else {
+        return {
+            categoria: "Insuficiente",
+            clase: "insuficiente"
+        };
+    }
+
+}
+
 const formulario = document.getElementById("formularioEvaluacion");
 const errores = document.getElementById("errores");
 const resultado = document.getElementById("resultado");
@@ -14,9 +43,21 @@ formulario.addEventListener("submit", function(event) {
     const cargo = document.getElementById("cargo").value.trim();
 
     if (nombre === "" || cargo === "") {
-        errores.innerHTML = "Nombre y cargo son obligatorios";
-        return;
-    }
+    errores.innerHTML = "Nombre y cargo son obligatorios";
+    return;
+}
+
+const soloTexto = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+if (!soloTexto.test(nombre)) {
+    errores.innerHTML = "El nombre solo debe contener texto";
+    return;
+}
+
+if (!soloTexto.test(cargo)) {
+    errores.innerHTML = "El cargo solo debe contener texto";
+    return;
+}
 
     let sumaPesos = 0;
     let notaFinal = 0;
@@ -24,6 +65,7 @@ formulario.addEventListener("submit", function(event) {
     for (let i = 1; i <= 5; i++) {
 
         const puntaje = parseFloat(document.getElementById("puntaje" + i).value);
+
         const peso = parseFloat(document.getElementById("peso" + i).value);
 
         if (puntaje < 1 || puntaje > 10 || isNaN(puntaje)) {
@@ -37,6 +79,7 @@ formulario.addEventListener("submit", function(event) {
         }
 
         sumaPesos += peso;
+
         notaFinal += puntaje * (peso / 100);
     }
 
@@ -45,25 +88,11 @@ formulario.addEventListener("submit", function(event) {
         return;
     }
 
-    let categoria = "";
-    let claseColor = "";
+    const resultadoCategoria = obtenerCategoria(notaFinal);
 
-    if (notaFinal >= 9) {
-        categoria = "Excelente";
-        claseColor = "excelente";
-    }
-    else if (notaFinal >= 7) {
-        categoria = "Bueno";
-        claseColor = "bueno";
-    }
-    else if (notaFinal >= 5) {
-        categoria = "Regular";
-        claseColor = "regular";
-    }
-    else {
-        categoria = "Insuficiente";
-        claseColor = "insuficiente";
-    }
+    const categoria = resultadoCategoria.categoria;
+
+    const claseColor = resultadoCategoria.clase;
 
     resultado.className = claseColor;
 
